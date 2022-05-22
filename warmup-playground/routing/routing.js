@@ -1,4 +1,4 @@
-import { STATUS } from '../../constants/status-codes';
+import { STATUS } from '../constants/status-codes';
 import { isRoot } from '../utils';
 import { routes } from './routes';
 
