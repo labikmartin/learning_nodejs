@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "nodemon -r esm index.js",
+    "server": "node -r esm index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "esm": "^3.2.25"
+  }
+}

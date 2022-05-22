@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bulma.min.css" />
+    <title>Admin - Add product</title>
+  </head>
+  <body class="has-navbar-fixed-top">
+    <div class="container">
+      <nav class="navbar is-fixed-top is-primary">
+        <div class="container">
+          <div class="navbar-menu is-active">
+            <div class="navbar-start">
+              <a class="navbar-item" href="/">Shop</a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link navbar-item is-tab is-active">Admin</a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item is-active" href="/admin/add-product"
+                    >Add product</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <section class="section box mt-6">
+        <div class="column is-full">
+          <h1 class="title is-4">Add new product</h1>
+        </div>
+        <div class="column is-half mt-6">
+          <form action="/admin/add-product" method="post">
+            <div class="field">
+              <label class="label">Product name</label>
+              <input class="input is-link" type="text" name="product" />
+            </div>
+            <button class="button is-primary mt-6" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
