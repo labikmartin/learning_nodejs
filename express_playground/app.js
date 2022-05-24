@@ -1,16 +1,17 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
+import { __dirname } from './common.js';
+import { AppViewEngine } from './config/view-engine.js';
 import { adminRouter, shopRouter, notFound } from './routes/index.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
 const app = express();
+
+const appViewEngine = new AppViewEngine(app);
+appViewEngine.init();
 
 app.use(express.static(path.join(__dirname + '/public')));
 
