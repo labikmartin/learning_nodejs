@@ -1,0 +1,29 @@
+<div
+  class="column is-half-tablet is-one-third-desktop is-one-fourth-widescreen"
+>
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <img src="<%= image %>" alt="<%= name %>" />
+      </figure>
+    </div>
+    <div class="card-content">
+      <p class="title is-4"><%= name %></p>
+
+      <div class="content"><%= description %></div>
+    </div>
+    <form
+      class="card-footer"
+      action="/delete-product/<%= index %>"
+      method="post"
+    >
+      <a
+        role="button"
+        type="submit"
+        class="card-footer-item"
+        onclick="this.parentElement.submit()"
+        >Delete</a
+      >
+    </form>
+  </div>
+</div>
