@@ -1,4 +1,5 @@
 import { STATUS } from '../constants/status-codes.js';
+import { Product } from '../models/product.js';
 import { routes } from '../routes/routes.js';
 
 const pageSubdirectory = 'admin';
@@ -6,6 +7,8 @@ const pageSubdirectory = 'admin';
 export function postAddProducts(request, response) {
   const { body } = request;
   console.log(body);
+  const { name, description, image } = body;
+  new Product(name, description, image).save();
   response.status(STATUS.NO_CONTENT).end();
 }
 

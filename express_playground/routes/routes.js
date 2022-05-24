@@ -9,6 +9,11 @@ export const routes = {
     template: './add-product.html',
     name: 'add-product'
   },
+  deleteProduct: {
+    path: '/delete-product/:id',
+    template: null,
+    name: 'delete-product'
+  },
   notFound: {
     path: '*',
     template: './404.html',
