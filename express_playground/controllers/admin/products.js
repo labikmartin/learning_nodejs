@@ -1,7 +1,7 @@
-import { STATUS } from '../constants/status-codes.js';
-import { Product } from '../models/product.js';
-import { routes } from '../routes/routes.js';
-import { logError } from '../utils/logging.js';
+import { STATUS } from '../../constants/status-codes.js';
+import { Product } from '../../models/product.js';
+import { routes } from '../../routes/admin/routes.js';
+import { logError } from '../../utils/logging.js';
 
 const pageSubdirectory = 'admin';
 
@@ -20,6 +20,6 @@ export function renderAddProduct(_, response) {
     pageTitle: 'Admin - Add product',
     pageSubdirectory,
     pageName: routes.addProduct.name,
-    layout: './layouts/page.html'
+    layout: './common/layouts/page.html'
   });
 }

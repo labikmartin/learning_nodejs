@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import {
   postAddProducts,
   renderAddProduct
-} from '../controllers/admin-products.js';
+} from '../../controllers/admin/products.js';
 import { routes } from './routes.js';
 
 const router = express.Router();

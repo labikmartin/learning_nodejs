@@ -1,10 +1,9 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 
 import {
   deleteProduct,
   renderProducts
-} from '../controllers/client-products.js';
+} from '../../controllers/shop/products.js';
 import { routes } from './routes.js';
 
 const router = express.Router();

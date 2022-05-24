@@ -1,6 +1,6 @@
-import { Product } from '../models/product.js';
-import { routes } from '../routes/index.js';
-import { logError } from '../utils/logging.js';
+import { Product } from '../../models/product.js';
+import { routes } from '../../routes/shop/routes.js';
+import { logError } from '../../utils/logging.js';
 
 export function renderProducts(_, response) {
   Product.fetchAll()
@@ -10,7 +10,7 @@ export function renderProducts(_, response) {
       response.render(routes.root.template, {
         pageTitle: '📦 My products',
         pageName: routes.root.name,
-        layout: './layouts/page.html',
+        layout: './common/layouts/page.html',
         productList
       });
     })
