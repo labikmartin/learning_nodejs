@@ -1,0 +1,12 @@
+<div class="tile notification is-link">
+  <p class="title is-4">📋 List of products</p>
+</div>
+<div class="box has-background-white-bis">
+  <div class="columns is-multiline">
+    <% productList.forEach(function({name, description, image}, index) { %> <%-
+    include('../partials/product-tile.html', {name, description, image, index})
+    %> <% }); %> <% if (productList.length === 0) { %>
+    <p>No products available</p>
+    <% } %>
+  </div>
+</div>
