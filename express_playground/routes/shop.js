@@ -10,7 +10,8 @@ const urlParser = bodyParser.urlencoded({ extended: true });
 router.get(routes.root.path, (_, response) => {
   response.render(routes.root.template, {
     pageTitle: '📦 My products',
-    pageName: routes.root.name
+    pageName: routes.root.name,
+    layout: './layouts/page.html'
   });
 });
 

@@ -14,7 +14,8 @@ router.get(routes.addProduct.path, (_, response) => {
   response.render(routes.addProduct.template, {
     pageTitle: 'Admin - Add product',
     pageSubdirectory,
-    pageName: routes.addProduct.name
+    pageName: routes.addProduct.name,
+    layout: './layouts/page.html'
   });
 });
 

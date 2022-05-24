@@ -1,5 +1,6 @@
 import path from 'path';
 import { renderFile } from 'ejs';
+import expressLayouts from 'express-ejs-layouts';
 
 import { __dirname } from '../common.js';
 
@@ -14,5 +15,6 @@ export class AppViewEngine {
     app.set('views', path.join(__dirname, 'views'));
     app.engine('html', renderFile);
     app.set('view engine', 'html');
+    app.use(expressLayouts);
   }
 }
