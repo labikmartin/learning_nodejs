@@ -4,7 +4,7 @@ import path from 'path';
 
 import { __dirname } from './common.js';
 import { AppViewEngine } from './config/view-engine.js';
-import { adminRouter, shopRouter, notFound } from './routes/index.js';
+import { adminRoutes, shopRoutes, notFound } from './routes/index.js';
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ appViewEngine.init();
 
 app.use(express.static(path.join(__dirname + '/public')));
 
-app.use(adminRouter, shopRouter, notFound);
+app.use(adminRoutes, shopRoutes, notFound);
 
 app.listen(process.env.PORT, () => {
   console.log(
