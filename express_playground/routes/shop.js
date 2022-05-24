@@ -8,7 +8,10 @@ const router = express.Router();
 const urlParser = bodyParser.urlencoded({ extended: true });
 
 router.get(routes.root.path, (_, response) => {
-  response.send(routes.root.template);
+  response.render(routes.root.template, {
+    pageTitle: '📦 My products',
+    pageName: routes.root.name
+  });
 });
 
 export { router };

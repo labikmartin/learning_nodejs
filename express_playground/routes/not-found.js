@@ -6,7 +6,10 @@ import { routes } from './routes.js';
 const router = express.Router();
 
 router.get(routes.notFound.path, (_, response) => {
-  response.status(STATUS.NOT_FOUND).send(routes.notFound.template);
+  response.status(STATUS.NOT_FOUND).render(routes.notFound.template, {
+    pageTitle: 'Not Found',
+    pageName: routes.notFound.name
+  });
 });
 
 export { router };
