@@ -1,0 +1,51 @@
+<nav class="navbar is-fixed-top is-light">
+  <div class="container">
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a
+          class="navbar-item is-tab <%= pageName === 'product-list' && 'is-active' %>"
+          href="/"
+          >Product list</a
+        >
+        <a
+          class="navbar-item is-tab <%= pageName === 'cart' && 'is-active' %>"
+          href="/cart"
+          >Cart</a
+        >
+        <a
+          class="navbar-item is-tab <%= pageName === 'checkout' && 'is-active' %>"
+          href="/checkout"
+          >Checkout</a
+        >
+        <a
+          class="navbar-item is-tab <%= pageName === 'profile' && 'is-active' %>"
+          href="/profile"
+          >Profile</a
+        >
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a
+            class="navbar-link navbar-item is-tab <%= typeof pageSubdirectory === 'string' && pageSubdirectory === 'admin' && 'is-active' %>"
+            >Admin</a
+          >
+          <div class="navbar-dropdown">
+            <a
+              class="navbar-item <%= pageName === 'product-management' && 'is-active' %>"
+              href="/admin/product-management"
+              >Product management</a
+            >
+            <a
+              class="navbar-item <%= pageName === 'add-product' && 'is-active' %>"
+              href="/admin/add-product"
+              >Add product</a
+            >
+            <a
+              class="navbar-item <%= pageName === 'edit-product' && 'is-active' %>"
+              href="/admin/edit-product/0"
+              >Edit product</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

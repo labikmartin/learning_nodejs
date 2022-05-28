@@ -1,0 +1,9 @@
+<div class="column is-two-thirds-tablet is-half-widescreen mt-6">
+  <form action="/admin/add-product" method="post">
+    <%- include('partials/text-field.html', {name: 'name', label: 'Name'}) %>
+    <%- include('partials/text-field.html', {name: 'description', label:
+    'Description'}) %> <%- include('partials/text-field.html', {name: 'image',
+    label: 'Image'}) %>
+    <button class="button is-primary mt-6" type="submit">Send</button>
+  </form>
+</div>
