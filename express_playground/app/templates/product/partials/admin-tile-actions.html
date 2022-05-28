@@ -1,0 +1,20 @@
+<div class="card-footer">
+  <form
+    class="card-footer-item"
+    action="/edit-product/<%= index %>"
+    method="post"
+  >
+    <a role="button" type="submit" onclick="this.parentElement.submit()"
+      >Edit</a
+    >
+  </form>
+  <form
+    class="card-footer-item"
+    action="/delete-product/<%= index %>"
+    method="post"
+  >
+    <a role="button" type="submit" onclick="this.parentElement.submit()"
+      >Delete</a
+    >
+  </form>
+</div>

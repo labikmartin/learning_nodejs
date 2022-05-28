@@ -2,7 +2,7 @@ import path from 'path';
 import { renderFile } from 'ejs';
 import expressLayouts from 'express-ejs-layouts';
 
-import { __dirname } from '../common.js';
+import { __dirname } from './common.js';
 
 export class AppViewEngine {
   constructor(app) {
@@ -12,7 +12,11 @@ export class AppViewEngine {
   init() {
     const { app } = this;
 
-    app.set('views', path.join(__dirname, 'views'));
+    app.set('views', [
+      path.join(__dirname, 'app', 'templates'),
+      path.join(__dirname, 'app', 'templates/layouts'),
+      path.join(__dirname, 'app', 'templates/partials')
+    ]);
     app.engine('html', renderFile);
     app.set('view engine', 'html');
     app.use(expressLayouts);

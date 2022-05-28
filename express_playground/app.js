@@ -2,9 +2,14 @@ import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
 
-import { __dirname } from './common.js';
-import { AppViewEngine } from './config/view-engine.js';
-import { adminRoutes, shopRoutes, notFound } from './routes/index.js';
+import { __dirname, AppViewEngine } from './config/index.js';
+import {
+  cartRoutes,
+  checkoutRoutes,
+  productRoutes,
+  userRoutes,
+  errorRoutes
+} from './app/modules/index.js';
 
 dotenv.config();
 
@@ -15,7 +20,7 @@ appViewEngine.init();
 
 app.use(express.static(path.join(__dirname + '/public')));
 
-app.use(adminRoutes, shopRoutes, notFound);
+app.use(cartRoutes, checkoutRoutes, productRoutes, userRoutes, errorRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(
