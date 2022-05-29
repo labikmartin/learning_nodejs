@@ -17,7 +17,14 @@ export function addProduct(request, response) {
 }
 
 export function editProduct(request, response) {
-  response.end();
+  const { id } = request.params;
+  const { body } = request;
+  const { name, description, image } = body;
+
+  new Product(name, description, image)
+    .edit(id)
+    .then(() => response.redirect(routesConfig.productManagement.path))
+    .catch(logError);
 }
 
 export function deleteProduct(request, response) {
@@ -36,13 +43,20 @@ export function renderAddProduct(_, response) {
   });
 }
 
-export function renderEditProduct(_, response) {
-  response.render(routesConfig.addProduct.template, {
-    pageTitle: '📦 Admin - Edit product',
-    pageSubdirectory: adminSubdirectory,
-    pageName: routesConfig.editProduct.name,
-    layout
-  });
+export function renderEditProduct(request, response) {
+  const { id } = request.params;
+  Product.getProduct(id)
+    .then((product) => {
+      response.render(routesConfig.editProduct.template, {
+        pageTitle: '📦 Admin - Edit product',
+        pageSubdirectory: adminSubdirectory,
+        pageName: routesConfig.editProduct.name,
+        layout,
+        product,
+        id
+      });
+    })
+    .catch(logError);
 }
 
 export function renderProductManagement(_, response) {

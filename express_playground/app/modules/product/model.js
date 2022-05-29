@@ -13,9 +13,22 @@ export class Product {
     this.image = image;
   }
 
+  static readProductsFile(callback) {
+    fs.readFile(Product.#productsPath, (err, data) => callback(err, data));
+  }
+
+  static writeProductsFile(products) {
+    return (callback) =>
+      fs.writeFile(Product.#productsPath, jsonStringify(products), (err) =>
+        callback(err)
+      );
+  }
+
   save() {
     return new Promise((resolve, reject) => {
-      fs.readFile(Product.#productsPath, (_, data) => {
+      Product.readProductsFile((err, data) => {
+        err && reject(err);
+
         const products = jsonParse(data);
 
         console.log({ products });
@@ -26,10 +39,56 @@ export class Product {
 
         products.push(this);
 
-        fs.writeFile(Product.#productsPath, jsonStringify(products), (err) => {
+        Product.writeProductsFile(products)((err) => {
           resolve(products);
           err && reject(err);
         });
+      });
+    });
+  }
+
+  edit(id) {
+    return new Promise((resolve, reject) => {
+      if (!id && id !== 0) {
+        reject('Product does not exist');
+      }
+
+      Product.readProductsFile((err, data) => {
+        err && reject(err);
+
+        const products = jsonParse(data);
+
+        if (!Array.isArray(products)) {
+          resolve([]);
+        }
+
+        const updatedProducts = [...products];
+        updatedProducts.splice(id, 1, this);
+
+        Product.writeProductsFile(updatedProducts)((err) => {
+          resolve(updatedProducts);
+          err && reject(err);
+        });
+      });
+    });
+  }
+
+  static getProduct(id) {
+    return new Promise((resolve, reject) => {
+      if (!id && id !== 0) {
+        reject('Product does not exist');
+      }
+
+      Product.readProductsFile((err, data) => {
+        err && reject(err);
+
+        const products = jsonParse(data);
+
+        if (!Array.isArray(products)) {
+          resolve([]);
+        }
+
+        resolve(products[id]);
       });
     });
   }
@@ -40,7 +99,7 @@ export class Product {
         reject('Product does not exist');
       }
 
-      fs.readFile(this.#productsPath, (err, data) => {
+      Product.readProductsFile((err, data) => {
         err && reject(err);
 
         const products = jsonParse(data);
@@ -49,9 +108,10 @@ export class Product {
           resolve([]);
         }
 
-        const updatedProducts = products.concat([], products.splice(id, 1));
+        const updatedProducts = [...products];
+        updatedProducts.splice(id, 1);
 
-        fs.writeFile(this.#productsPath, jsonStringify(products), (err) => {
+        Product.writeProductsFile(updatedProducts)((err) => {
           resolve(updatedProducts);
           err && reject(err);
         });
@@ -61,7 +121,7 @@ export class Product {
 
   static fetchAll() {
     return new Promise((resolve, reject) => {
-      fs.readFile(this.#productsPath, (err, data) => {
+      Product.readProductsFile((err, data) => {
         err && reject(err);
 
         const productsData = jsonParse(data);

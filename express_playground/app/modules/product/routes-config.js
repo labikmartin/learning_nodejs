@@ -11,7 +11,7 @@ export const routesConfig = {
   },
   editProduct: {
     path: '/admin/edit-product/:id',
-    template: './product/layout/add-product.html',
+    template: './product/layout/edit-product.html',
     name: 'edit-product'
   },
   deleteProduct: {
