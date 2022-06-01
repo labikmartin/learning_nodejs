@@ -3,8 +3,8 @@
 </div>
 <div class="box has-background-white-bis">
   <div class="columns is-multiline">
-    <% productList.forEach(function({name, description, image}, index) { %> <%-
-    include('partials/product-tile.html', {name, description, image, index,
+    <% productList.forEach(function({name, description, image, uuid}) { %> <%-
+    include('partials/product-tile.html', {name, description, image, uuid,
     actions: './product/partials/admin-tile-actions.html'}) %> <% }); %> <% if
     (productList.length === 0) { %>
     <p>No products available</p>

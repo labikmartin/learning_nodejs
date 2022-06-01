@@ -1,6 +1,6 @@
 export const routesConfig = {
   not_found: {
-    path: '*',
+    path: '/*',
     template: './error/404.html',
     name: 'not-found'
   }

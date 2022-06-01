@@ -6,7 +6,7 @@ export function jsonParse(data) {
   } catch (error) {
     logError('JSON parsing error');
 
-    return null;
+    return undefined;
   }
 }
 

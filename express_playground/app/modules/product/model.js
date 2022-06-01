@@ -1,8 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { randomUUID } from 'crypto';
 
 import { __dirname } from '../../../config/index.js';
-import { jsonParse, jsonStringify } from '../../../utils/index.js';
+import { jsonParse, jsonStringify, findByUuid } from '../../../utils/index.js';
 
 export class Product {
   static #productsPath = path.join(__dirname, 'dummydb', 'products.json');
@@ -24,6 +25,10 @@ export class Product {
       );
   }
 
+  get uuid() {
+    return randomUUID();
+  }
+
   save() {
     return new Promise((resolve, reject) => {
       Product.readProductsFile((err, data) => {
@@ -31,13 +36,11 @@ export class Product {
 
         const products = jsonParse(data);
 
-        console.log({ products });
-
         if (!Array.isArray(products)) {
           resolve([]);
         }
 
-        products.push(this);
+        products.push({ ...this, uuid: this.uuid });
 
         Product.writeProductsFile(products)((err) => {
           resolve(products);
@@ -47,23 +50,27 @@ export class Product {
     });
   }
 
-  edit(id) {
+  edit(uuid) {
     return new Promise((resolve, reject) => {
-      if (!id && id !== 0) {
-        reject('Product does not exist');
+      if (!uuid) {
+        reject('No ID provided');
       }
 
       Product.readProductsFile((err, data) => {
         err && reject(err);
 
         const products = jsonParse(data);
+        const oldProduct = products?.find((product) => product.uuid === uuid);
+        const productToEditIndex = products.findIndex(
+          (product) => product.uuid === uuid
+        );
 
-        if (!Array.isArray(products)) {
-          resolve([]);
+        if (!oldProduct) {
+          resolve(`[EDIT]: Product with uuid: <${uuid}> does not exist.`);
         }
 
         const updatedProducts = [...products];
-        updatedProducts.splice(id, 1, this);
+        updatedProducts.splice(productToEditIndex, 1, { ...this, uuid });
 
         Product.writeProductsFile(updatedProducts)((err) => {
           resolve(updatedProducts);
@@ -73,43 +80,49 @@ export class Product {
     });
   }
 
-  static getProduct(id) {
+  static getProduct(uuid) {
     return new Promise((resolve, reject) => {
-      if (!id && id !== 0) {
-        reject('Product does not exist');
+      if (!uuid) {
+        reject('No ID provided');
       }
 
       Product.readProductsFile((err, data) => {
         err && reject(err);
 
         const products = jsonParse(data);
+        const product = findByUuid(products, uuid);
 
-        if (!Array.isArray(products)) {
-          resolve([]);
+        if (!product) {
+          reject(`[GET]: Product with uuid: <${uuid}> does not exist.`);
         }
 
-        resolve(products[id]);
+        resolve(product);
       });
     });
   }
 
-  static delete(id) {
+  static delete(uuid) {
     return new Promise((resolve, reject) => {
-      if (!id && id !== 0) {
-        reject('Product does not exist');
+      if (!uuid) {
+        reject('No ID provided');
       }
 
       Product.readProductsFile((err, data) => {
         err && reject(err);
 
         const products = jsonParse(data);
+        const product = findByUuid(products, uuid);
 
-        if (!Array.isArray(products)) {
-          resolve([]);
+        if (!product) {
+          reject(`[DELETE]: Product with uuid: <${uuid}> does not exist.`);
         }
 
+        const productToDeleteIndex = products.findIndex(
+          (product) => product.uuid === uuid
+        );
+
         const updatedProducts = [...products];
-        updatedProducts.splice(id, 1);
+        updatedProducts.splice(productToDeleteIndex, 1);
 
         Product.writeProductsFile(updatedProducts)((err) => {
           resolve(updatedProducts);

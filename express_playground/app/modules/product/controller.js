@@ -13,7 +13,10 @@ export function addProduct(request, response) {
   new Product(name, description, image)
     .save()
     .then(() => response.status(STATUS.NO_CONTENT).end())
-    .catch(logError);
+    .catch((error) => {
+      response.send(error);
+      logError(error);
+    });
 }
 
 export function editProduct(request, response) {
@@ -24,14 +27,20 @@ export function editProduct(request, response) {
   new Product(name, description, image)
     .edit(id)
     .then(() => response.redirect(routesConfig.productManagement.path))
-    .catch(logError);
+    .catch((error) => {
+      response.send(error);
+      logError(error);
+    });
 }
 
 export function deleteProduct(request, response) {
   const { id } = request.params;
   Product.delete(id)
     .then(() => response.redirect(routesConfig.productManagement.path))
-    .catch(logError);
+    .catch((error) => {
+      response.send(error);
+      logError(error);
+    });
 }
 
 export function renderAddProduct(_, response) {
@@ -53,10 +62,13 @@ export function renderEditProduct(request, response) {
         pageName: routesConfig.editProduct.name,
         layout,
         product,
-        id
+        uuid: id
       });
     })
-    .catch(logError);
+    .catch((error) => {
+      response.send(error);
+      logError(error);
+    });
 }
 
 export function renderProductManagement(_, response) {
