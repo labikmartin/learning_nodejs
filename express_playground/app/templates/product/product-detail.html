@@ -16,9 +16,7 @@
           <p class="subtitle is-4">
             <%- include('partials/price.html', { price: product.price }) %>
           </p>
-          <form action="/cart-add/<%= product.uuid %>" method="post">
-            <button class="button is-danger is-light">Add to cart</button>
-          </form>
+          <%- include('cart/partials/add-to-cart-button.html', { product }) %>
         </div>
       </div>
     </div>

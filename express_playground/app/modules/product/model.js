@@ -41,7 +41,14 @@ export class Product {
         const products = jsonParse(data);
 
         if (!Array.isArray(products)) {
-          resolve([]);
+          const newProducts = [{ ...this, uuid: this.uuid }];
+
+          Product.writeProductsFile(newProducts)((err) => {
+            err && reject(err);
+            resolve(newProducts);
+          });
+
+          return;
         }
 
         products.push({ ...this, uuid: this.uuid });
@@ -71,6 +78,8 @@ export class Product {
 
         if (!oldProduct) {
           resolve(`[EDIT]: Product with uuid: <${uuid}> does not exist.`);
+
+          return;
         }
 
         const updatedProducts = [...products];
