@@ -33,10 +33,6 @@ export class Product {
     return randomUUID();
   }
 
-  get uuid() {
-    return randomUUID();
-  }
-
   save() {
     return new Promise((resolve, reject) => {
       Product.readProductsFile((err, data) => {
