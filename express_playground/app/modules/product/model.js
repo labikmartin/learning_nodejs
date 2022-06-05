@@ -3,15 +3,21 @@ import path from 'path';
 import { randomUUID } from 'crypto';
 
 import { __dirname } from '../../../config/index.js';
-import { jsonParse, jsonStringify, findByUuid } from '../../../utils/index.js';
+import {
+  jsonParse,
+  jsonStringify,
+  findByUuid,
+  reverseFormatNumber
+} from '../../../utils/index.js';
 
 export class Product {
   static #productsPath = path.join(__dirname, 'dummydb', 'products.json');
 
-  constructor(name, description, image) {
+  constructor(name, description, image, price) {
     this.name = name;
     this.description = description;
     this.image = image;
+    this.price = reverseFormatNumber(price);
   }
 
   static readProductsFile(callback) {
@@ -20,9 +26,7 @@ export class Product {
 
   static writeProductsFile(products) {
     return (callback) =>
-      fs.writeFile(Product.#productsPath, jsonStringify(products), (err) =>
-        callback(err)
-      );
+      fs.writeFile(Product.#productsPath, jsonStringify(products), callback);
   }
 
   get uuid() {
@@ -43,8 +47,8 @@ export class Product {
         products.push({ ...this, uuid: this.uuid });
 
         Product.writeProductsFile(products)((err) => {
-          resolve(products);
           err && reject(err);
+          resolve(products);
         });
       });
     });

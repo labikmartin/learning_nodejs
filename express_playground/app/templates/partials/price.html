@@ -1,0 +1,4 @@
+<% function formatPrice(price) { if (!price) { return ''; } return new
+Intl.NumberFormat('cs-CZ', { style: 'currency', currency: 'CZK',
+maximumFractionDigits: 2, }).format(price).replace(); } %> <%=
+formatPrice(price) %>

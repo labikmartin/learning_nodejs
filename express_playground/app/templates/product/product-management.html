@@ -3,9 +3,9 @@
 </div>
 <div class="box has-background-white-bis">
   <div class="columns is-multiline">
-    <% productList.forEach(function({name, description, image, uuid}) { %> <%-
-    include('partials/product-tile.html', {name, description, image, uuid,
-    actions: './product/partials/admin-tile-actions.html'}) %> <% }); %> <% if
+    <% productList.forEach(function(product) { %> <%-
+    include('partials/product-tile.html', {...product, actions:
+    './product/partials/admin-tile-actions.html'}) %> <% }); %> <% if
     (productList.length === 0) { %>
     <p>No products available</p>
     <% } %>

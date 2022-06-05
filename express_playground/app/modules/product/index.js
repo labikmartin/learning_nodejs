@@ -8,5 +8,6 @@ export {
   renderAddProduct,
   renderEditProduct,
   renderProductList,
+  renderProductDetail,
   renderProductManagement
 } from './controller.js';

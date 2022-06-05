@@ -1,13 +1,17 @@
-<div class="tile notification is-link">
-  <p class="title is-4">📋 List of products</p>
-</div>
-<div class="box has-background-white-bis">
-  <div class="columns is-multiline">
-    <% productList.forEach(function({name, description, image, uuid}) { %> <%-
-    include('partials/product-tile.html', {name, description, image, uuid,
-    actions: './product/partials/tile-actions.html'}) %> <% }); %> <% if
-    (productList.length === 0) { %>
-    <p>No products available</p>
-    <% } %>
+<section class="section">
+  <div class="container">
+    <div class="tile notification is-link">
+      <p class="title is-4">📋 List of products</p>
+    </div>
+    <div class="box has-background-white-bis">
+      <div class="columns is-multiline">
+        <% productList.forEach(function(product) { %> <%-
+        include('partials/product-tile.html', {...product, actions:
+        './product/partials/tile-actions.html'}) %> <% }); %> <% if
+        (productList.length === 0) { %>
+        <p>No products available</p>
+        <% } %>
+      </div>
+    </div>
   </div>
-</div>
+</section>

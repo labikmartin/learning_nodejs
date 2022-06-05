@@ -1,10 +1,11 @@
 <div class="column is-two-thirds-tablet is-half-widescreen mt-6">
-  <form action="/admin/edit-product/<%- uuid %>" method="post">
+  <form action="/admin/edit-product/<%- product.uuid %>" method="post">
     <%- include('partials/text-field.html', {name: 'name', label: 'Name', value:
     product.name}) %> <%- include('partials/text-field.html', {name:
     'description', label: 'Description', value: product.description}) %> <%-
     include('partials/text-field.html', {name: 'image', label: 'Image', value:
-    product.image}) %>
+    product.image}) %> <%- include('partials/text-field.html', {name: 'price',
+    label: 'Price', value: product.price}) %>
     <button class="button is-primary mt-6" type="submit">Send</button>
   </form>
 </div>

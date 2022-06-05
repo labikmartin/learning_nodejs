@@ -3,7 +3,7 @@
     <div class="navbar-menu">
       <div class="navbar-start">
         <a
-          class="navbar-item is-tab <%= pageName === 'product-list' && 'is-active' %>"
+          class="navbar-item is-tab <%= ['product-list', 'product-detail'].includes(pageName) && 'is-active' %>"
           href="/"
           >Product list</a
         >

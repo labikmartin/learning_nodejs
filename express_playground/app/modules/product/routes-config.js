@@ -19,19 +19,14 @@ export const routesConfig = {
     template: null,
     name: 'delete-product'
   },
+  productDetail: {
+    path: '/product-detail/:id',
+    template: './product/product-detail.html',
+    name: 'product-detail'
+  },
   productList: {
     path: '/',
-    template: './product/layout/product-list.html',
+    template: './product/product-list.html',
     name: 'product-list'
-  },
-  cart: {
-    path: '/cart',
-    template: './cart/layout/cart.html',
-    name: 'cart'
-  },
-  checkout: {
-    path: '/checkout',
-    template: './checkout/layout/checkout.html',
-    name: 'checkout'
   }
 };
