@@ -5,6 +5,8 @@ import expressLayouts from 'express-ejs-layouts';
 import { __dirname } from './common.js';
 
 export class AppViewEngine {
+  static pathToViewTemplates = path.join(__dirname, 'app/templates');
+
   constructor(app) {
     this.app = app;
   }
@@ -13,9 +15,9 @@ export class AppViewEngine {
     const { app } = this;
 
     app.set('views', [
-      path.join(__dirname, 'app', 'templates'),
-      path.join(__dirname, 'app', 'templates/layouts'),
-      path.join(__dirname, 'app', 'templates/partials')
+      AppViewEngine.pathToViewTemplates,
+      path.join(AppViewEngine.pathToViewTemplates, 'layouts'),
+      path.join(AppViewEngine.pathToViewTemplates, 'partials')
     ]);
     app.engine('html', renderFile);
     app.set('view engine', 'html');

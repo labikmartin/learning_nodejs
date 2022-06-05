@@ -1,0 +1,24 @@
+<% var detailLink = "/product-detail/" + uuid; %>
+
+<div
+  class="column is-half-tablet is-one-third-desktop is-one-fourth-widescreen"
+>
+  <div class="card pt-3">
+    <a class="card-image" href="<%= detailLink %>">
+      <figure class="image is-16by9">
+        <img src="<%= image %>" alt="<%= name %>" />
+      </figure>
+    </a>
+    <div class="card-content">
+      <a href="<%= detailLink %>"><p class="title is-4"><%= name %></p></a>
+
+      <div class="content">
+        <p><%= description %></p>
+        <p class="title is-5">
+          <%- include('partials/price.html', { price }) %>
+        </p>
+      </div>
+    </div>
+    <%- include(actions, { uuid }) %>
+  </div>
+</div>

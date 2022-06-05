@@ -9,7 +9,8 @@ import {
   renderProductManagement,
   editProduct,
   renderEditProduct,
-  routesConfig
+  routesConfig,
+  renderProductDetail
 } from './index.js';
 
 const router = express.Router();
@@ -27,6 +28,8 @@ router.post(routesConfig.deleteProduct.path, deleteProduct);
 router.get(routesConfig.addProduct.path, renderAddProduct);
 
 router.get(routesConfig.editProduct.path, renderEditProduct);
+
+router.get(routesConfig.productDetail.path, renderProductDetail);
 
 router.get(routesConfig.productList.path, renderProductList);
 

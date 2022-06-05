@@ -1,19 +1,27 @@
 <div class="card-footer">
   <form
-    class="card-footer-item"
-    action="/admin/edit-product/<%= index %>"
+    class="card-footer-item p-0"
+    action="/admin/edit-product/<%= uuid %>"
     method="get"
   >
-    <a role="button" type="submit" onclick="this.parentElement.submit()"
+    <a
+      class="card-footer-item"
+      role="button"
+      type="submit"
+      onclick="this.parentElement.submit()"
       >Edit</a
     >
   </form>
   <form
-    class="card-footer-item"
-    action="/delete-product/<%= index %>"
+    class="card-footer-item p-0"
+    action="/delete-product/<%= uuid %>"
     method="post"
   >
-    <a role="button" type="submit" onclick="this.parentElement.submit()"
+    <a
+      class="card-footer-item"
+      role="button"
+      type="submit"
+      onclick="this.parentElement.submit()"
       >Delete</a
     >
   </form>
